@@ -1,0 +1,24 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "elasticfilesystem:ModifyMountTargetSecurityGroups",
+                "elasticfilesystem:CreateFileSystem",
+                "elasticfilesystem:DescribeMountTargetSecurityGroups"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "elasticfilesystem:*",
+            "Resource": [
+                "arn:aws:elasticfilesystem:us-west-2:<XXXXXX>:file-system/<fs-1234>",
+                "arn:aws:elasticfilesystem:*:<XXXXXX>:access-point/*"
+            ]
+        }
+    ]
+}
