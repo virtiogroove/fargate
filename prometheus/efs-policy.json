@@ -1,0 +1,13 @@
+{
+  "Version" : "2012-10-17",
+  "Id" : "ExamplePolicy01",
+  "Statement" : [ {
+    "Sid" : "ExampleSatement01",
+    "Effect" : "Allow",
+    "Principal" : {
+      "AWS" : "*"
+    },
+    "Action" : [ "elasticfilesystem:ClientRootAccess", "elasticfilesystem:ClientMount", "elasticfilesystem:ClientWrite" ],
+    "Resource" : "arn:aws:elasticfilesystem:us-west-2:<XXXXXXXXXX>:file-system/<fs-1234>" #Replace XXX with your account and fs with your EFS ID
+  } ]
+}
