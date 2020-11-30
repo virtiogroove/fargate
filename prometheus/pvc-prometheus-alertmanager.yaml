@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: prometheus-alertmanager
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: efs
+  resources:
+    requests:
+      storage: 10Gi
