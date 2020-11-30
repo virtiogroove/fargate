@@ -1,17 +1,18 @@
-eksctl create cluster --name MyCluster --zones --fargate --region
+eksctl create cluster --name MyCluster --fargate
 
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-efs-csi-driver/master/deploy/kubernetes/base/csidriver.yaml
 #or
 kubectl apply -f https://raw.githubusercontent.com/virtiogroove/fargate/main/prometheus/aws-csi.yaml
-# Note usually it returns
-aws eks describe-cluster --name MyCluster --query "cluster.resourcesVpcConfig.vpcId" --output text -
+
+
+aws eks describe-cluster --name MyCluster --query "cluster.resourcesVpcConfig.vpcId" --output text
 #grab output which is somrthing like below
 #vpc-<exampledb76d3e813>
 
-aws ec2 describe-vpcs --vpc-ids vpc-0046a8f551bedce74 --query "Vpcs[].CidrBlock" --output text --region us-east-1
-192.168.0.0/16 #VPC CIDR
-vpc-12345 #Your VPC id
+aws ec2 describe-vpcs --vpc-ids <vpc-yourfargate>--query "Vpcs[].CidrBlock" --output text --region us-east-1
+#it returns something  192.168.0.0/16 #VPC CIDR
+#vpc-12345 <vpc-yourfargate>#Your VPC id
 
 
 #Create a security group that allows inbound NFS traffic for your Amazon EFS mount points.
@@ -30,6 +31,8 @@ kubectl apply -f efs-storage-class.yaml
 
 
 helm install prometheus prometheus-community/prometheus --namespace default -f values-fargate.yaml
+or
+helm install prometheus prometheus-community/prometheus --namespace default -f  https://github.com/virtiogroove/fargate/blob/main/prometheus/values-fargate.yaml
 
 
 kubectl apply -f pvc-prometheus-alertmanager.yaml
