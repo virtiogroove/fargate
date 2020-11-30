@@ -1,0 +1,42 @@
+#This is alpha version
+#Security still needs to be tightened , I am thinking to restric 0777 to 0755
+{
+    "Name": "prometheuserver",
+    "AccessPointId": "fsap-<hex01>",
+    "FileSystemId": "<fs-1234>",
+    "PosixUser": {
+        "Uid": 500,
+        "Gid": 500,
+        "SecondaryGids": [
+            500
+        ]
+    },
+    "RootDirectory": {
+        "Path": "/prometheuserver",
+        "CreationInfo": {
+            "OwnerUid": 500,
+            "OwnerGid": 500,
+            "Permissions": "0777" 
+        }
+    }
+},
+{
+    "Name": "prometheusalertmanager",
+    "AccessPointId": "fsap-<hex02>",
+    "FileSystemId": "<fs-1234>",
+    "PosixUser": {
+        "Uid": 500,
+        "Gid": 500,
+        "SecondaryGids": [
+            500
+        ]
+    },
+    "RootDirectory": {
+        "Path": "/prometheusalertmanager",
+        "CreationInfo": {
+            "OwnerUid": 500,
+            "OwnerGid": 500,
+            "Permissions": "077"
+        }
+    }
+}
