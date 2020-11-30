@@ -1,0 +1,15 @@
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: prometheus-server
+spec:
+  accessModes: 
+    - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  storageClassName: efs
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: <fs-1234>::<fsap-1234> #Replace values with your EDS id and your EFS access Point ID
